@@ -1,0 +1,82 @@
+class Particle{
+  PVector pos;
+  PVector vel;
+  
+  Particle(PVector pos, PVector vel){
+     this.pos = pos;
+     this.vel = vel;
+  }
+  
+  void show(){
+    strokeWeight(0);
+    fill(color(255,0,0));
+    circle(pos.x,pos.y,5);
+  }
+  
+  void move(Particle[] particles){
+    if(pos.x < 100){
+      vel.x = vel.x*-1;
+      pos.x += 2;
+    }
+    if(pos.x > 700){
+      vel.x = vel.x*-1;
+      pos.x -= 2;
+    }
+    if(pos.y < 500){
+      vel.y = vel.y*-1;
+      pos.y += 2;
+    }
+    if(pos.y > 700){
+      vel.y = vel.y*-1;
+      pos.y -= 2;
+    }
+    pos.add(vel);
+  }
+}
+int N = 2000;
+
+class Graph{
+
+  
+  
+  void Generate(Particle[] particles){
+    for(int i = 0; i < arr.length; i++){
+      arr[i] = particles[i].pos.x;
+    }
+    // sort array
+    arr = sort(arr);
+  }
+
+  void show(){
+    2
+  }
+}
+
+Particle[] particles = new Particle[N];
+
+void setup(){
+  size(800,800);
+  strokeWeight(4);
+  // initialize particles
+  for(int i = 0; i < particles.length; i++){
+    // set all particles in rectangle 100, 300 and 400, 500
+    particles[i] = new Particle(new PVector(random(120,380),random(520,680)),new PVector(random(-1,1),random(-1,1)));
+  }
+  
+}
+
+// make an array of particles
+
+
+void draw(){
+  background(0);
+  stroke(255);
+  fill(0);
+  strokeWeight(4);
+  rect(100,500,600,200);
+  strokeWeight(0);
+  for(int i = 0; i < particles.length; i++){
+    particles[i].show();
+    particles[i].move(particles);
+  }
+}
